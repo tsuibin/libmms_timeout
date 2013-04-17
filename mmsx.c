@@ -43,6 +43,7 @@ mmsx_t *mmsx_connect(mms_io_t *io, void *data, const char *url, int bandwidth)
   if (!mmsx)
     return mmsx;
 
+  fprintf( stderr, "\n<<<<<<<<<<<<<<< Starting mmsx connection >>>>>>>>\n\n");
   /* Normally we try mmsh first, as mms: is a rollover protocol identifier
      according to microsoft and recent mediaplayer versions will try
      mmsh before mms for mms:// uris. Note that in case of a mmst:// or a
