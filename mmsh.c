@@ -96,6 +96,15 @@
 #define EOS 2
 #define GOT_HEADER_N_DATA 3
 
+/*
+ * add 2013-04-16
+ */
+#include <pthread.h>
+
+static int mmsh_timeout = 0;
+void *mmsh_timeout_thrd( void *arg );
+/* end */
+
 static const char* mmsh_FirstRequest =
     "GET %s HTTP/1.0\r\n"
     "Accept: */*\r\n"
@@ -478,7 +487,7 @@ static int mmsh_connect_int (mms_io_t *io, mmsh_t *this, off_t seek, uint32_t ti
   /* Close exisiting connection (if any) and connect */
   if (this->s != -1)
     closesocket(this->s);
-
+  
   if (mms_tcp_connect(io, this)) {
     return 0;
   }
